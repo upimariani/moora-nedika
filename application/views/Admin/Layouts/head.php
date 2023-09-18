@@ -44,5 +44,5 @@
 
 	<!-- Responsive.css-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url('asset/quantam-lite/') ?>assets/css/responsive.css">
-
+	<link href="<?= base_url('asset/') ?>/datatables.min.css" rel="stylesheet">
 </head>

@@ -23,8 +23,10 @@ class cLogin extends CI_Controller
 			if ($data->level_user == '1') {
 
 				redirect('Admin/cDashboard', 'refresh');
-			} else {
+			} else if ($data->level_user == '2') {
 				redirect('Pimpinan/cDashboard', 'refresh');
+			} else {
+				redirect('Manager/cDashboard', 'refresh');
 			}
 		} else {
 			$this->session->set_flashdata('error', 'Username dan Password Anda Salah!');

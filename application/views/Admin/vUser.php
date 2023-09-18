@@ -76,18 +76,22 @@
 												<td><?= $value->password ?></td>
 												<td><?php if ($value->level_user == '1') {
 													?>
-														<label class="label bg-success">Admin</label>
+														<label class="label bg-success">HRD</label>
 													<?php
-													} else {
+													} else if ($value->level_user == '2') {
 													?>
-														<label class="label bg-warning">Pimpinan</label>
+														<label class="label bg-warning">Kepala Pabrik</label>
+													<?php
+													} else if ($value->level_user == '3') {
+													?>
+														<label class="label bg-info">Manager</label>
 													<?php
 													} ?>
 												</td>
-												<td> <a href="" class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title=".icofont-code-alt">
+												<td> <a href="<?= base_url('Admin/cUser/delete/' . $value->id_user) ?>" class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Hapus">
 														<i class="icofont icofont-trash"></i>
 													</a>
-													<button type="button" data-toggle="modal" data-target="#edit<?= $value->id_user ?>" class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title=".icofont-code-alt">
+													<button type="button" data-toggle="modal" data-target="#edit<?= $value->id_user ?>" class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Edit">
 														<i class="icofont icofont-edit"></i>
 													</button>
 												</td>
@@ -148,8 +152,9 @@
 						<label for="exampleInputPassword1" class="form-control-label">Level User</label>
 						<select class="form-control" name="level" id="exampleSelect1" required>
 							<option value="">---Pilih Level User---</option>
-							<option value="1">Admin</option>
-							<option value="2">Pimpinan</option>
+							<option value="1">HRD</option>
+							<option value="2">Kepala Pabrik</option>
+							<option value="3">Manager</option>
 						</select>
 					</div>
 				</div>
@@ -201,10 +206,13 @@ foreach ($user as $key => $value) {
 								<option value="">---Pilih Level User---</option>
 								<option value="1" <?php if ($value->level_user == '1') {
 														echo 'selected';
-													} ?>>Admin</option>
+													} ?>>HRD</option>
 								<option value="2" <?php if ($value->level_user == '2') {
 														echo 'selected';
-													} ?>>Pimpinan</option>
+													} ?>>Kepala Pabrik</option>
+								<option value="3" <?php if ($value->level_user == '3') {
+														echo 'selected';
+													} ?>>Manager</option>
 							</select>
 						</div>
 					</div>

@@ -47,7 +47,7 @@
 					<div class="card-block">
 						<div class="row">
 							<div class="col-sm-12 table-responsive">
-								<table class="table table-hover">
+								<table id="myTable" class="table table-hover">
 									<thead>
 										<tr>
 											<th>&nbsp;</th>
@@ -63,9 +63,9 @@
 											<th>Nama Karyawan</th>
 											<th>Tanggal Proses</th>
 											<th>Absensi</th>
-											<th>Kualitas Kerja</th>
 											<th>Masa Kerja</th>
-											<th>Kepribadian</th>
+											<th>Kedisiplinan Waktu</th>
+											<th>Target Kerja</th>
 											<th>Hasil</th>
 											<th>Approved</th>
 										</tr>
@@ -80,9 +80,9 @@
 												<td><?= $value->nama_karyawan ?></td>
 												<td><?= $value->tgl_proses ?></td>
 												<td><?= $value->absensi ?></td>
-												<td><?= $value->kualitas_kerja ?></td>
 												<td><?= $value->masa_kerja ?></td>
-												<td><?= $value->kepribadian ?></td>
+												<td><?= $value->kedisiplinan ?></td>
+												<td><?= $value->target_kerja ?></td>
 												<td><?= $value->hasil ?></td>
 												<td><?php if ($value->approved == '0') {
 													?>
@@ -180,16 +180,7 @@
 								<= 1 tahun</option>
 						</select>
 					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1" class="form-control-label">Kepribadian</label>
-						<select class="form-control" name="kepribadian" id="exampleSelect1" required>
-							<option value="">---Pilih Penilaian Kepribadian---</option>
-							<option value="1">>= 3 x SP</option>
-							<option value="2">2 x SP</option>
-							<option value="3">1 x SP</option>
-							<option value="4">Tidak Pernah SP</option>
-						</select>
-					</div>
+
 
 				</div>
 				<div class="modal-footer">

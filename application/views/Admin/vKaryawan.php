@@ -47,7 +47,7 @@
 					<div class="card-block">
 						<div class="row">
 							<div class="col-sm-12 table-responsive">
-								<table class="table">
+								<table id="myTable" class="table">
 									<thead>
 										<tr>
 											<th>#</th>

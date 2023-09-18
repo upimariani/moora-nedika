@@ -27,6 +27,7 @@
 				</a>
 			</li>
 			<li class="nav-level">--- Analisis MOORA</li>
+
 			<li class="<?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cAnalisis') {
 							echo 'active';
 						}  ?> treeview">

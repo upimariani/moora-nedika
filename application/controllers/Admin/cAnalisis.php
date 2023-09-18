@@ -29,9 +29,8 @@ class cAnalisis extends CI_Controller
 			'id_user' => '1',
 			'tgl_proses' => date('Y-m-d'),
 			'absensi' => $this->input->post('absensi'),
-			'kualitas_kerja' => $this->input->post('kedisiplinan'),
 			'masa_kerja' => $this->input->post('masa_kerja'),
-			'kepribadian' => $this->input->post('kepribadian'),
+			'kedisiplinan' => $this->input->post('kedisiplinan'),
 			'target_kerja' => $this->input->post('target'),
 			'hasil' => '0',
 			'approved' => '0',
@@ -40,7 +39,6 @@ class cAnalisis extends CI_Controller
 
 
 		$c1 = array();
-		$c2 = array();
 		$c3 = array();
 		$c4 = array();
 		$c5 = array();
@@ -48,10 +46,9 @@ class cAnalisis extends CI_Controller
 		foreach ($data_analisis as $key => $value) {
 			$id_karyawan[] = $value->id_karyawan;
 			$c1[] = $value->absensi;
-			$c2[] = $value->kualitas_kerja;
 			$c3[] = $value->target_kerja;
 			$c4[] = $value->masa_kerja;
-			$c5[] = $value->kepribadian;
+			$c5[] = $value->kedisiplinan;
 		}
 
 		//pada c1 -----------------------------------
@@ -59,27 +56,20 @@ class cAnalisis extends CI_Controller
 		for ($a = 0; $a < sizeof($c1); $a++) {
 			$norm_c1 += pow($c1[$a], 2);
 		}
+		// echo $norm_c1;
+		// echo '<br>';
+
 		//akar kuadrat
 		$c1_kuadrat = sqrt($norm_c1);
-
+		// echo $c1_kuadrat;
+		// echo '<br>';
 		//x1
 		for ($b = 0; $b < sizeof($c1); $b++) {
-			$x1[] = $c1[$b] / $c1_kuadrat;
+			$x1[] = pow($c1[$b], 2) / $c1_kuadrat;
 		}
 
 
-		//pada c2---------------------------------------
-		$norm_c2 = 0;
-		for ($c = 0; $c < sizeof($c2); $c++) {
-			$norm_c2 += pow($c2[$c], 2);
-		}
-		//akar kuadrat
-		$c2_kuadrat = sqrt($norm_c2);
 
-		//x2
-		for ($d = 0; $d < sizeof($c2); $d++) {
-			$x2[] = $c2[$d] / $c2_kuadrat;
-		}
 
 
 		//pada c3-----------------------------------------
@@ -87,12 +77,16 @@ class cAnalisis extends CI_Controller
 		for ($e = 0; $e < sizeof($c3); $e++) {
 			$norm_c3 += pow($c3[$e], 2);
 		}
+		// echo $norm_c3;
+		// echo '<br>';
+
 		//akar kuadrat
 		$c3_kuadrat = sqrt($norm_c3);
-
+		// echo $c3_kuadrat;
+		// echo '<br>';
 		//x3
 		for ($f = 0; $f < sizeof($c3); $f++) {
-			$x3[] = $c3[$f] / $c3_kuadrat;
+			$x3[] = pow($c3[$f], 2) / $c3_kuadrat;
 		}
 
 		//pada c4------------------------------------------
@@ -100,12 +94,15 @@ class cAnalisis extends CI_Controller
 		for ($g = 0; $g < sizeof($c4); $g++) {
 			$norm_c4 += pow($c4[$g], 2);
 		}
+		// echo $norm_c4;
+		// echo '<br>';
 		//akar kuadrat
 		$c4_kuadrat = sqrt($norm_c4);
-
+		// echo $c4_kuadrat;
+		// echo '<br>';
 		//x4
 		for ($h = 0; $h < sizeof($c4); $h++) {
-			$x4[] = $c4[$h] / $c4_kuadrat;
+			$x4[] = pow($c4[$h], 2) / $c4_kuadrat;
 		}
 
 		//pada c5 ------------------------------------------
@@ -113,21 +110,27 @@ class cAnalisis extends CI_Controller
 		for ($i = 0; $i < sizeof($c5); $i++) {
 			$norm_c5 += pow($c5[$i], 2);
 		}
+
+		// echo $norm_c5;
+		// echo '<br>';
 		//akar kuadrat
 		$c5_kuadrat = sqrt($norm_c5);
-
+		// echo $c5_kuadrat;
+		// echo '<br>';
 		//x5
 		for ($j = 0; $j < sizeof($c5); $j++) {
-			$x5[] = $c5[$j] / $c5_kuadrat;
+			$x5[] = pow($c5[$j], 2) / $c5_kuadrat;
 		}
 
 		//hasil nilai optimasi, jumlah perkalian bobot kriteria
-		//c1 = 30; c2=25; c3=20; c4=15; c5=10
+		//c1 = 30;  c3=25; c4=30; c5=15
 
 		for ($k = 0; $k < sizeof($x1); $k++) {
-			// echo $x1[$k] . ' | ' . $x2[$k] . ' | ' . $x3[$k] . ' | ' . $x4[$k] . ' | ' . $x5[$k];
+			// echo $x1[$k] . ' | ' . $x3[$k] . ' | ' . $x4[$k] . ' | ' . $x5[$k];
 			// echo '<br>';
-			$ac = round(($x1[$k] * 0.30) + ($x2[$k] * 0.25) + ($x3[$k] * 0.20) + ($x4[$k] * 0.15) + ($x5[$k] * 0.10), 4);
+			$ac = round(($x1[$k] * 0.3) + ($x3[$k] * 0.3) + ($x4[$k] * 0.15) + ($x5[$k] * 0.25), 4);
+			// echo $ac;
+			// echo '<br>';
 			$data = array(
 				'id_karyawan' => $id_karyawan[$k],
 				'hasil' => $ac

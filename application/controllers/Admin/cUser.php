@@ -49,6 +49,12 @@ class cUser extends CI_Controller
 		$this->session->set_flashdata('success', 'Data User Berhasil diperbaharui!');
 		redirect('Admin/cUser');
 	}
+	public function delete($id)
+	{
+		$this->mUser->delete($id);
+		$this->session->set_flashdata('success', 'Data User Berhasil Dihapus!');
+		redirect('Admin/cUser');
+	}
 }
 
 /* End of file cUser.php */
