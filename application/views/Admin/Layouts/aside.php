@@ -23,7 +23,23 @@
 							echo 'active';
 						}  ?> treeview">
 				<a class="waves-effect waves-dark" href="<?= base_url('Admin/cKaryawan') ?>">
-					<i class="icon-user"></i><span> Karyawan</span>
+					<i class="icon-people"></i><span> Karyawan</span>
+				</a>
+			</li>
+			<li class="nav-level">--- Kriteria Analisis</li>
+
+			<li class="<?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cAbsensi') {
+							echo 'active';
+						}  ?> treeview">
+				<a class="waves-effect waves-dark" href="<?= base_url('Admin/cAbsensi') ?>">
+					<i class="icon-clock"></i><span> Absensi Karyawan</span>
+				</a>
+			</li>
+			<li class="<?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cTargetKerja') {
+							echo 'active';
+						}  ?> treeview">
+				<a class="waves-effect waves-dark" href="<?= base_url('Admin/cTargetKerja') ?>">
+					<i class="icon-handbag"></i><span> Target Kerja</span>
 				</a>
 			</li>
 			<li class="nav-level">--- Analisis MOORA</li>

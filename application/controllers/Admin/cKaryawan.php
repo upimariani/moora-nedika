@@ -31,6 +31,7 @@ class cKaryawan extends CI_Controller
 			'alamat_karyawan' => $this->input->post('alamat'),
 			'divisi' => $this->input->post('divisi'),
 			'jabatan' => $this->input->post('jabatan'),
+			'tgl_mulai' => $this->input->post('tgl_mulai'),
 			'stat_analisis' => '0'
 		);
 		$this->mKaryawan->insert($data);
@@ -46,6 +47,7 @@ class cKaryawan extends CI_Controller
 			'alamat_karyawan' => $this->input->post('alamat'),
 			'divisi' => $this->input->post('divisi'),
 			'jabatan' => $this->input->post('jabatan'),
+			'tgl_mulai' => $this->input->post('tgl_mulai'),
 			'stat_analisis' => '0'
 		);
 		$this->mKaryawan->update($id, $data);

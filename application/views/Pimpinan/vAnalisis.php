@@ -18,9 +18,7 @@
 						<li class="breadcrumb-item"><a href="basic-table.html">Analisis</a>
 						</li>
 					</ol>
-					<a href="<?= base_url('Pimpinan/cAnalisis/cetak') ?>" class="btn btn-warning mt-5">
-						Cetak Laporan
-					</a>
+
 				</div>
 				<?php
 				if ($this->session->userdata('success') != '') {
@@ -47,15 +45,13 @@
 					<div class="card-block">
 						<div class="row">
 							<div class="col-sm-12 table-responsive">
-								<table class="table table-hover">
+								<table id="myTable" class="table table-hover">
 									<thead>
 										<tr>
 											<th>&nbsp;</th>
 											<th>&nbsp;</th>
 											<th>&nbsp;</th>
 											<th colspan="4" class="text-center">Bobot Kriteria</th>
-
-											<th></th>
 											<th></th>
 										</tr>
 										<tr>
@@ -67,7 +63,6 @@
 											<th>Kedisiplinan Waktu</th>
 											<th>Target Kerja</th>
 											<th>Hasil</th>
-											<th>Approved</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -84,12 +79,7 @@
 												<td><?= $value->kedisiplinan ?></td>
 												<td><?= $value->target_kerja ?></td>
 												<td><?= $value->hasil ?></td>
-												<td><?php if ($value->approved == '0') {
-													?>
-														<span class="badge badge-danger">Belum Approved</span>
-													<?php
-													} ?>
-												</td>
+
 											</tr>
 										<?php
 										}
@@ -108,86 +98,4 @@
 	</div>
 
 	<!-- Container-fluid ends -->
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<form action="<?= base_url('Admin/cAnalisis/hitung') ?>" method="POST">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Data Karyawan</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1" class="form-control-label">Nama Karyawan</label>
-						<select class="form-control" name="karyawan" id="exampleSelect1" required>
-							<option value="">---Pilih Karyawan---</option>
-							<?php
-							foreach ($karyawan as $key => $value) {
-							?>
-								<option value="<?= $value->id_karyawan ?>"><?= $value->nama_karyawan ?> | <?= $value->divisi ?> Jabatan. <?= $value->jabatan ?></option>
-							<?php
-							}
-							?>
-
-						</select>
-					</div>
-					<hr>
-					<h4 for="exampleInputPassword1" class="form-control-label">Penilaian Karyawan</h4>
-					<hr>
-					<div class="form-group">
-						<label for="exampleInputPassword1" class="form-control-label">Absensi</label>
-						<select class="form-control" name="absensi" id="exampleSelect1" required>
-							<option value="">---Pilih Penilaian Absensi---</option>
-							<option value="4">100% - 80%</option>
-							<option value="3">81% - 70%</option>
-							<option value="2">71% - 60%</option>
-							<option value="1">61% - 50%</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1" class="form-control-label">Kedisiplinan Waktu</label>
-						<select class="form-control" name="kedisiplinan" id="exampleSelect1" required>
-							<option value="">---Pilih Penilaian Kedisiplinan Waktu---</option>
-							<option value="4">Tidak Pernah Telat</option>
-							<option value="3">1 x Telat</option>
-							<option value="2">2 x Telat</option>
-							<option value="1">>= 3 x Telat</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1" class="form-control-label">Target Hasil Kerja</label>
-						<select class="form-control" name="target" id="exampleSelect1" required>
-							<option value="">---Pilih Penilaian Target Hasil Kerja---</option>
-							<option value="4">Selalu sesuai Target</option>
-							<option value="3">1 x tidak sesuai</option>
-							<option value="2">2 x tidak sesuai</option>
-							<option value="1">>= 3 x tidak sesuai</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1" class="form-control-label">Masa Kerja</label>
-						<select class="form-control" name="masa_kerja" id="exampleSelect1" required>
-							<option value="">---Pilih Penilaian Masa Kerja---</option>
-							<option value="4">>= 4 tahun</option>
-							<option value="3">3 tahun</option>
-							<option value="2">2 tahun</option>
-							<option value="1">
-								<= 1 tahun</option>
-						</select>
-					</div>
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-		</form>
-	</div>
 </div>

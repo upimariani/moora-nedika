@@ -36,6 +36,13 @@
 <script type="text/javascript" src="<?= base_url('asset/quantam-lite/') ?>assets/pages/elements.js"></script>
 <script src="<?= base_url('asset/quantam-lite/') ?>assets/js/menu.min.js"></script>
 <script src="<?= base_url() ?>asset/chart/Chart.js"></script>
+<script src="<?= base_url('asset/') ?>datatables.min.js"></script>
+<link href="<?= base_url('asset/') ?>/datatables.min.css" rel="stylesheet">
+<script>
+	$(document).ready(function() {
+		$('#myTable').DataTable();
+	});
+</script>
 <script>
 	var $window = $(window);
 	var nav = $('.fixed-button');

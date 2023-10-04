@@ -57,6 +57,7 @@
 											<th>Alamat</th>
 											<th>Divisi</th>
 											<th>Jabatan</th>
+											<th>Tanggal Mulai Kerja</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -73,6 +74,7 @@
 												<td><?= $value->alamat_karyawan ?></td>
 												<td><?= $value->divisi ?></td>
 												<td><?= $value->jabatan ?></td>
+												<td><?= $value->tgl_mulai ?></td>
 												<td> <a href="<?= base_url('Admin/cKaryawan/delete/' . $value->id_karyawan) ?>" class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title=".icofont-code-alt">
 														<i class="icofont icofont-trash"></i>
 													</a>
@@ -142,7 +144,10 @@
 						<label for="exampleInputPassword1" class="form-control-label">Jabatan</label>
 						<input type="text" name="jabatan" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Jabatan" required>
 					</div>
-
+					<div class="form-group">
+						<label for="exampleInputPassword1" class="form-control-label">Tanggal Mulai Kerja</label>
+						<input type="date" name="tgl_mulai" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Jabatan" required>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -198,6 +203,10 @@ foreach ($karyawan as $key => $value) {
 						<div class="form-group">
 							<label for="exampleInputPassword1" class="form-control-label">Jabatan</label>
 							<input type="text" name="jabatan" value="<?= $value->jabatan ?>" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Jabatan" required>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1" class="form-control-label">Tanggal Mulai Kerja</label>
+							<input type="date" name="tgl_mulai" value="<?= $value->tgl_mulai ?>" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Jabatan" required>
 						</div>
 
 					</div>

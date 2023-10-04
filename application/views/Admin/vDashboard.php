@@ -67,7 +67,72 @@
 						<h5 class="card-header-text">Grafik Presentasi Kriteria Karyawan</h5>
 					</div>
 					<div class="card-block">
-						<canvas id="myChart"></canvas>
+						<table id="myTable" class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Nama Karyawan</th>
+									<th>Jenis Kelamin</th>
+									<th>No Telepon</th>
+									<th>Alamat</th>
+									<th>Divisi</th>
+									<th>Jabatan</th>
+									<th>Periode</th>
+									<th>Hasil</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$no = 1;
+								$periode = $this->db->query("SELECT YEAR(tgl_proses) as year, periode FROM `analisis` GROUP BY YEAR(tgl_proses), periode")->result();
+								foreach ($periode as $key => $value) {
+									$rangking = $this->mDashboard->peringkat($value->year, $value->periode);
+									$hasil[] = $rangking->hasil;
+									$nama[] = array(
+										'nama_karyawan' => $rangking->nama_karyawan,
+										'nilai' => $rangking->hasil
+									);
+								?>
+									<tr>
+										<td><?= $no++ ?></td>
+										<td><?= $rangking->nama_karyawan ?></td>
+										<td><?= $rangking->jk ?></td>
+										<td><?= $rangking->no_hp_karyawan ?></td>
+										<td><?= $rangking->alamat_karyawan ?></td>
+										<td><?= $rangking->divisi ?></td>
+										<td><?= $rangking->jabatan ?></td>
+										<td><?= $rangking->year ?> Triwulan ke- <?= $rangking->periode ?></td>
+										<td><?= $rangking->hasil ?></td>
+
+									</tr>
+								<?php
+								}
+
+								?>
+
+
+
+
+							</tbody>
+							<tfoot>
+								<tr class="text-success">
+									<td>&nbsp;</td>
+									<td>Selamat Kepada</td>
+									<td><strong><?php $juara = max($hasil);
+												for ($i = 0; $i < sizeof($nama); $i++) {
+													if ($juara == $nama[$i]['nilai']) {
+														echo $nama[$i]['nama_karyawan'];
+													}
+												} ?></strong></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><?= $juara ?></td>
+								</tr>
+							</tfoot>
+						</table>
 					</div>
 				</div>
 			</div>

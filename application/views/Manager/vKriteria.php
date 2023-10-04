@@ -88,7 +88,7 @@
 													<?php
 													} ?>
 												</td>
-												<td> <a href="<?= base_url('Admin/cKriteria/delete/' . $value->id_kriteria) ?>" class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Hapus">
+												<td> <a href="<?= base_url('Manager/cKriteria/delete/' . $value->id_kriteria) ?>" class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Hapus">
 														<i class="icofont icofont-trash"></i>
 													</a>
 													<button type="button" data-toggle="modal" data-target="#edit<?= $value->id_kriteria ?>" class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -119,7 +119,7 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<form action="<?= base_url('Admin/cKriteria/create') ?>" method="POST">
+		<form action="<?= base_url('Manager/cKriteria/create') ?>" method="POST">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Data Kriteria</h5>
@@ -164,7 +164,7 @@ foreach ($kriteria as $key => $value) {
 ?>
 	<div class="modal fade" id="edit<?= $value->id_kriteria ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-			<form action="<?= base_url('Admin/cKriteria/update/' . $value->id_kriteria) ?>" method="POST">
+			<form action="<?= base_url('Manager/cKriteria/update/' . $value->id_kriteria) ?>" method="POST">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Data Kriteria</h5>

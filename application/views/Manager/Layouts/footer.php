@@ -29,13 +29,19 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-
+<script src="<?= base_url('asset/') ?>datatables.min.js"></script>
+<link href="<?= base_url('asset/') ?>/datatables.min.css" rel="stylesheet">
 <!-- custom js -->
 <script type="text/javascript" src="<?= base_url('asset/quantam-lite/') ?>assets/js/main.min.js"></script>
 <script type="text/javascript" src="<?= base_url('asset/quantam-lite/') ?>assets/pages/dashboard.js"></script>
 <script type="text/javascript" src="<?= base_url('asset/quantam-lite/') ?>assets/pages/elements.js"></script>
 <script src="<?= base_url('asset/quantam-lite/') ?>assets/js/menu.min.js"></script>
 <script src="<?= base_url() ?>asset/chart/Chart.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#myTable').DataTable();
+	});
+</script>
 <script>
 	var $window = $(window);
 	var nav = $('.fixed-button');
