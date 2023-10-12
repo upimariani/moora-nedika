@@ -79,7 +79,6 @@
 												<td><?= $value->kedisiplinan ?></td>
 												<td><?= $value->target_kerja ?></td>
 												<td><?= $value->hasil ?></td>
-
 											</tr>
 										<?php
 										}

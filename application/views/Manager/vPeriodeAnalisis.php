@@ -38,7 +38,7 @@
 		<!-- Tables start -->
 		<!-- Row start -->
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<!-- Basic Table starts -->
 				<div class="card">
 					<div class="card-header">
@@ -75,7 +75,13 @@
 														echo 'Juli, Agustus, September';
 													} else if ($value->periode == '4') {
 														echo 'Oktober, November, Desember';
-													} ?></td>
+													} else if ($value->periode == '5') {
+														echo 'Januari, Februari, Maret';
+													} else if ($value->periode == '6') {
+														echo 'April, Mei, Juni';
+													} else if ($value->periode == '7') {
+														echo 'Juli, Agustus, September';
+													}  ?></td>
 												<td><a href="<?= base_url('Manager/cAnalisis/detail_analisis/' . $value->tgl_proses . '/' . $value->periode) ?>" class="btn btn-warning">Detail Analisis Karyawan</a></td>
 												<td><a href="<?= base_url('Manager/cAnalisis/hapus/' . $value->year . '/' . $value->periode) ?>" class="btn btn-danger">Hapus</a></td>
 											</tr>
@@ -120,14 +126,16 @@
 								'Periode 2 2022 (April, Mei, Juni)',
 								'Periode 3 2022 (Juli, Agustus, September)',
 								'Periode 4 2022 (Oktober, November, Desember)',
+								'Periode 1 2023 (Januari, Februari, Maret)',
+								'Periode 2 2023 (April, Mei, Juni)',
+								'Periode 3 2023 (Juli, Agustus, September)'
 							);
-
 							$value = array(
-								'1', '2', '3', '4'
+								'1', '2', '3', '4', '5', '6', '7'
 							);
-
+							$tahun = array('2022', '2022', '2022', '2022', '2023', '2023', '2023');
 							for ($i = 0; $i < sizeof($periode); $i++) {
-								$cek_analisis = $this->db->query("SELECT YEAR(tgl_proses) as year, periode FROM `analisis` WHERE YEAR(tgl_proses) = '2022' AND periode='" . $value[$i] . "'  GROUP BY YEAR(tgl_proses), periode")->row();
+								$cek_analisis = $this->db->query("SELECT YEAR(tgl_proses) as year, periode FROM `analisis` WHERE YEAR(tgl_proses) = '" . $tahun[$i] . "' AND periode='" . $value[$i] . "'  GROUP BY YEAR(tgl_proses), periode")->row();
 							?>
 								<option value="<?= $value[$i] ?>" <?php if ($cek_analisis) {
 																		echo 'disabled';
@@ -135,15 +143,6 @@
 							<?php
 							}
 							?>
-
-
-
-
-
-
-
-
-
 						</select>
 					</div>
 					<hr>

@@ -52,24 +52,38 @@ class cAnalisis extends CI_Controller
 		if ($periode == '1') {
 			$periode_awal = 0;
 			$periode_akhir = 3;
+			$tahun = '2022';
 		} else if ($periode == '2') {
 			$periode_awal = 3;
 			$periode_akhir = 6;
+			$tahun = '2022';
 		} else if ($periode == '3') {
 			$periode_awal = 6;
 			$periode_akhir = 9;
+			$tahun = '2022';
 		} else if ($periode == '4') {
 			$periode_awal = 9;
 			$periode_akhir = 12;
+			$tahun = '2022';
+		} else if ($periode == '5') {
+			$periode_awal = 0;
+			$periode_akhir = 3;
+			$tahun = '2023';
+		} else if ($periode == '6') {
+			$periode_awal = 3;
+			$periode_akhir = 6;
+			$tahun = '2023';
+		} else if ($periode == '7') {
+			$periode_awal = 6;
+			$periode_akhir = 9;
+			$tahun = '2023';
 		}
-
-
 
 
 		$karyawan = $this->mAnalisis->karyawan_all();
 		foreach ($karyawan as $key => $value) {
 			// variabel
-			$variabel = $this->mAnalisis->variabel($periode_awal, $periode_akhir, $value->id_karyawan);
+			$variabel = $this->mAnalisis->variabel($periode_awal, $periode_akhir, $tahun, $value->id_karyawan);
 			// echo $variabel['terlambat']->jml . '|' . $variabel['absensi']->jml . '|' . $variabel['target_kerja']->jml . '|' . $variabel['lama_kerja']->tgl;
 			// echo $value->id_karyawan;
 			// echo '<br>';
@@ -217,7 +231,7 @@ class cAnalisis extends CI_Controller
 			$data = array(
 				'id_karyawan' => $id_karyawan[$k],
 				'id_user' => '1',
-				'tgl_proses' => '2022-12-03',
+				'tgl_proses' => '2023-03-30',
 				'periode' => $periode,
 				'absensi' => $c1[$k],
 				'masa_kerja' => $c4[$k],

@@ -12,12 +12,12 @@ class mAnalisis extends CI_Model
 		return $this->db->query("SELECT YEAR(tgl_proses) as year, periode, tgl_proses FROM `analisis` GROUP BY YEAR(tgl_proses), periode")->result();
 	}
 	//variabel perhitungan
-	public function variabel($periode_awal, $periode_akhir, $id_karyawan)
+	public function variabel($periode_awal, $periode_akhir, $tahun, $id_karyawan)
 	{
-		$data['lama_kerja'] = $this->db->query("SELECT DATEDIFF('2023-10-01', tgl_mulai) as tgl FROM karyawan WHERE id_karyawan='" . $id_karyawan . "'")->row();
-		$data['absensi'] = $this->db->query("SELECT COUNT(id_absensi) as jml, id_karyawan, MONTH(tgl_absensi) as tgl FROM `absensi` WHERE MONTH(tgl_absensi) <= '" . $periode_akhir . "' AND MONTH(tgl_absensi) > '" . $periode_awal . "' AND status='1' AND id_karyawan='" . $id_karyawan . "'")->row();
-		$data['target_kerja'] = $this->db->query("SELECT COUNT(id_target_kerja) as jml, id_karyawan, MONTH(tgl_kerja) as tgl FROM `target_kerja` WHERE MONTH(tgl_kerja) <= '" . $periode_akhir . "' AND MONTH(tgl_kerja) > '" . $periode_awal . "' AND status_target='1' AND id_karyawan='" . $id_karyawan . "'")->row();
-		$data['terlambat'] = $this->db->query("SELECT COUNT(id_absensi) as jml, id_karyawan, MONTH(tgl_absensi) as tgl FROM `absensi` WHERE MONTH(tgl_absensi) <= '" . $periode_akhir . "' AND MONTH(tgl_absensi) > '" . $periode_awal . "' AND status='2' AND id_karyawan='" . $id_karyawan . "'")->row();
+		$data['lama_kerja'] = $this->db->query("SELECT DATEDIFF('2023-03-30', tgl_mulai) as tgl FROM karyawan WHERE id_karyawan='" . $id_karyawan . "'")->row();
+		$data['absensi'] = $this->db->query("SELECT COUNT(id_absensi) as jml, id_karyawan, MONTH(tgl_absensi) as tgl FROM `absensi` WHERE MONTH(tgl_absensi) <= '" . $periode_akhir . "' AND MONTH(tgl_absensi) > '" . $periode_awal . "' AND YEAR(tgl_absensi)='" . $tahun . "' AND status='1' AND id_karyawan='" . $id_karyawan . "'")->row();
+		$data['target_kerja'] = $this->db->query("SELECT COUNT(id_target_kerja) as jml, id_karyawan, MONTH(tgl_kerja) as tgl FROM `target_kerja` WHERE MONTH(tgl_kerja) <= '" . $periode_akhir . "' AND MONTH(tgl_kerja) > '" . $periode_awal . "' AND YEAR(tgl_kerja)='" . $tahun . "' AND status_target='1' AND id_karyawan='" . $id_karyawan . "'")->row();
+		$data['terlambat'] = $this->db->query("SELECT COUNT(id_absensi) as jml, id_karyawan, MONTH(tgl_absensi) as tgl FROM `absensi` WHERE MONTH(tgl_absensi) <= '" . $periode_akhir . "' AND MONTH(tgl_absensi) > '" . $periode_awal . "' AND YEAR(tgl_absensi)='" . $tahun . "' AND status='2' AND id_karyawan='" . $id_karyawan . "'")->row();
 		return $data;
 	}
 	public function karyawan()
