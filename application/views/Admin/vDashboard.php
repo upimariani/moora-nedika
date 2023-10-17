@@ -61,7 +61,7 @@
 		<!-- 1-3-block row start -->
 		<div class="row">
 
-			<div class="col-lg-8">
+			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-header-text">Grafik Presentasi Kriteria Karyawan</h5>
