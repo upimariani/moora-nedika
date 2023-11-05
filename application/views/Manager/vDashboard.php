@@ -57,6 +57,25 @@
 			</div>
 		</div>
 		<!-- 4-blocks row end -->
+		<div class="row">
+			<div class="col-12 col-lg-6">
+				<div class="card flex-fill w-100">
+					<div class="card-header">
+						<h5 class="card-title">Peringkat Tahun 2022</h5>
+						<!-- <h6 class="card-subtitle text-muted">A line chart is a way of plotting data points on a line.</h6> -->
+					</div>
+					<div class="card-body">
+						<div class="chart">
+							<canvas id="karyawan"></canvas>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
 
 		<!-- 1-3-block row start -->
 		<div class="row">
@@ -84,9 +103,9 @@
 							<tbody>
 								<?php
 								$no = 1;
-								$periode = $this->db->query("SELECT YEAR(tgl_proses) as year, periode FROM `analisis` GROUP BY YEAR(tgl_proses), periode")->result();
+								$periode = $this->db->query("SELECT tgl_proses, periode FROM `analisis` GROUP BY tgl_proses, periode")->result();
 								foreach ($periode as $key => $value) {
-									$rangking = $this->mDashboard->peringkat($value->year, $value->periode);
+									$rangking = $this->mDashboard->peringkat($value->tgl_proses, $value->periode);
 									$hasil[] = $rangking->hasil;
 									$nama[] = array(
 										'nama_karyawan' => $rangking->nama_karyawan,
@@ -101,7 +120,7 @@
 										<td><?= $rangking->alamat_karyawan ?></td>
 										<td><?= $rangking->divisi ?></td>
 										<td><?= $rangking->jabatan ?></td>
-										<td><?= $rangking->year ?> Triwulan ke- <?= $rangking->periode ?></td>
+										<td><?= $rangking->tgl_proses ?> Triwulan ke- <?= $rangking->periode ?></td>
 										<td><?= $rangking->hasil ?></td>
 
 									</tr>

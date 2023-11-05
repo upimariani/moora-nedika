@@ -46,7 +46,7 @@
 					</div>
 					<div class="card-block">
 						<div class="row">
-							<div class="col-sm-6 table-responsive">
+							<div class="col-sm-12 table-responsive">
 								<table id="myTable" class="table table-hover">
 									<thead>
 
@@ -66,7 +66,7 @@
 										?>
 											<tr>
 												<td><?= $no++ ?></td>
-												<td><?= $value->year ?></td>
+												<td><?= $value->tgl_proses ?></td>
 												<td><?php if ($value->periode == '1') {
 														echo 'Januari, Februari, Maret';
 													} else if ($value->periode == '2') {
@@ -83,7 +83,7 @@
 														echo 'Juli, Agustus, September';
 													}  ?></td>
 												<td><a href="<?= base_url('Manager/cAnalisis/detail_analisis/' . $value->tgl_proses . '/' . $value->periode) ?>" class="btn btn-warning">Detail Analisis Karyawan</a></td>
-												<td><a href="<?= base_url('Manager/cAnalisis/hapus/' . $value->year . '/' . $value->periode) ?>" class="btn btn-danger">Hapus</a></td>
+												<td><a href="<?= base_url('Manager/cAnalisis/hapus/' . $value->tgl_proses . '/' . $value->periode) ?>" class="btn btn-danger">Hapus</a></td>
 											</tr>
 										<?php
 										}
@@ -135,7 +135,7 @@
 							);
 							$tahun = array('2022', '2022', '2022', '2022', '2023', '2023', '2023');
 							for ($i = 0; $i < sizeof($periode); $i++) {
-								$cek_analisis = $this->db->query("SELECT YEAR(tgl_proses) as year, periode FROM `analisis` WHERE YEAR(tgl_proses) = '" . $tahun[$i] . "' AND periode='" . $value[$i] . "'  GROUP BY YEAR(tgl_proses), periode")->row();
+								$cek_analisis = $this->db->query("SELECT tgl_proses, periode FROM `analisis` WHERE tgl_proses = '" . $tahun[$i] . "' AND periode='" . $value[$i] . "'  GROUP BY tgl_proses, periode")->row();
 							?>
 								<option value="<?= $value[$i] ?>" <?php if ($cek_analisis) {
 																		echo 'disabled';

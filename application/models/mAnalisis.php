@@ -9,7 +9,7 @@ class mAnalisis extends CI_Model
 	}
 	public function periode()
 	{
-		return $this->db->query("SELECT YEAR(tgl_proses) as year, periode, tgl_proses FROM `analisis` GROUP BY YEAR(tgl_proses), periode")->result();
+		return $this->db->query("SELECT tgl_proses, periode, tgl_proses FROM `analisis` GROUP BY YEAR(tgl_proses), periode")->result();
 	}
 	//variabel perhitungan
 	public function variabel($periode_awal, $periode_akhir, $tahun, $id_karyawan)

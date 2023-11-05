@@ -35,18 +35,7 @@ class cAnalisis extends CI_Controller
 	}
 	public function hitung()
 	{
-		// $data = array(
-		// 	'id_karyawan' => $this->input->post('karyawan'),
-		// 	'id_user' => '1',
-		// 	'tgl_proses' => date('Y-m-d'),
-		// 	'absensi' => $this->input->post('absensi'),
-		// 	'masa_kerja' => $this->input->post('masa_kerja'),
-		// 	'kedisiplinan' => $this->input->post('kedisiplinan'),
-		// 	'target_kerja' => $this->input->post('target'),
-		// 	'hasil' => '0',
-		// 	'approved' => '0',
-		// );
-		// $this->mAnalisis->insert_kriteria($data);
+
 
 		$periode = $this->input->post('periode');
 		if ($periode == '1') {
@@ -108,7 +97,10 @@ class cAnalisis extends CI_Controller
 				$c1[] = '2';
 			} else if ($percent_absensi <= 61 && $percent_absensi >= 50) {
 				$c1[] = '1';
+			} else {
+				$c1[] = '1';
 			}
+
 
 
 			//variabel telat/kedisiplinan
@@ -156,12 +148,12 @@ class cAnalisis extends CI_Controller
 		// echo '<br>';
 
 		//akar kuadrat
-		$c1_kuadrat = sqrt($norm_c1);
+		$c1_kuadrat = round(sqrt($norm_c1), 3);
 		// echo $c1_kuadrat;
 		// echo '<br>';
 		//x1
 		for ($b = 0; $b < sizeof($c1); $b++) {
-			$x1[] = pow($c1[$b], 2) / $c1_kuadrat;
+			$x1[] = round($c1[$b] / $c1_kuadrat, 3);
 		}
 
 
@@ -177,12 +169,12 @@ class cAnalisis extends CI_Controller
 		// echo '<br>';
 
 		//akar kuadrat
-		$c2_kuadrat = sqrt($norm_c2);
+		$c2_kuadrat = round(sqrt($norm_c2), 3);
 		// echo $c2_kuadrat;
 		// echo '<br>';
 		//x2
 		for ($f = 0; $f < sizeof($c2); $f++) {
-			$x2[] = pow($c2[$f], 2) / $c2_kuadrat;
+			$x2[] = round($c2[$f] / $c2_kuadrat, 3);
 		}
 
 		//pada c3------------------------------------------
@@ -193,12 +185,12 @@ class cAnalisis extends CI_Controller
 		// echo $norm_c3;
 		// echo '<br>';
 		//akar kuadrat
-		$c3_kuadrat = sqrt($norm_c3);
+		$c3_kuadrat = round(sqrt($norm_c3), 3);
 		// echo $c3_kuadrat;
 		// echo '<br>';
 		//x3
 		for ($h = 0; $h < sizeof($c3); $h++) {
-			$x3[] = pow($c3[$h], 2) / $c3_kuadrat;
+			$x3[] = round($c3[$h] / $c3_kuadrat, 3);
 		}
 
 		//pada c4 ------------------------------------------
@@ -210,28 +202,28 @@ class cAnalisis extends CI_Controller
 		// echo $norm_c4;
 		// echo '<br>';
 		//akar kuadrat
-		$c4_kuadrat = sqrt($norm_c4);
+		$c4_kuadrat = round(sqrt($norm_c4), 3);
 		// echo $c4_kuadrat;
 		// echo '<br>';
 		//x4
 		for ($j = 0; $j < sizeof($c4); $j++) {
-			$x4[] = pow($c4[$j], 2) / $c4_kuadrat;
+			$x4[] = round($c4[$j] / $c4_kuadrat, 3);
 		}
 
 		//hasil nilai optimasi, jumlah perkalian bobot kriteria-------------------
 		//c1 = 30;  c3=25; c4=30; c5=15
 
 		for ($k = 0; $k < sizeof($x1); $k++) {
-			// echo $x1[$k] . ' | ' . $x3[$k] . ' | ' . $x4[$k] . ' | ' . $x5[$k];
+			// echo $x1[$k] . ' | ' . $x2[$k] . ' | ' . $x3[$k] . ' | ' . $x4[$k] . '|' . $id_karyawan[$k];
 			// echo '<br>';
-			$ac = round(($x1[$k] * 0.3) + ($x2[$k] * 0.25) + ($x3[$k] * 0.3) + ($x4[$k] * 0.15), 4);
+			$ac = round(($x1[$k] * 0.3) + ($x2[$k] * 0.25) + ($x3[$k] * 0.3) + ($x4[$k] * 0.15), 3);
 			// echo $ac . '|' . $id_karyawan[$k];
 			// echo '<br>';
 
 			$data = array(
 				'id_karyawan' => $id_karyawan[$k],
 				'id_user' => '1',
-				'tgl_proses' => '2023-03-30',
+				'tgl_proses' => $tahun,
 				'periode' => $periode,
 				'absensi' => $c1[$k],
 				'masa_kerja' => $c4[$k],
@@ -246,7 +238,7 @@ class cAnalisis extends CI_Controller
 	}
 	public function hapus($year, $periode)
 	{
-		$this->db->where('YEAR(tgl_proses)', $year);
+		$this->db->where('tgl_proses', $year);
 		$this->db->where('periode', $periode);
 		$this->db->delete('analisis');
 		$this->session->set_flashdata('success', 'Analisis Berhasil Dihapus!');

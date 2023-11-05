@@ -36,7 +36,7 @@
 		<!-- Tables start -->
 		<!-- Row start -->
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<!-- Basic Table starts -->
 				<div class="card">
 					<div class="card-header">
@@ -44,7 +44,7 @@
 					</div>
 					<div class="card-block">
 						<div class="row">
-							<div class="col-sm-6 table-responsive">
+							<div class="col-sm-12 table-responsive">
 								<table id="myTable" class="table table-hover">
 									<thead>
 
@@ -63,7 +63,7 @@
 										?>
 											<tr>
 												<td><?= $no++ ?></td>
-												<td><?= $value->year ?></td>
+												<td><?= $value->tgl_proses ?></td>
 												<td><?php if ($value->periode == '1') {
 														echo 'Januari, Februari, Maret';
 													} else if ($value->periode == '2') {
@@ -72,11 +72,14 @@
 														echo 'Juli, Agustus, September';
 													} else if ($value->periode == '4') {
 														echo 'Oktober, November, Desember';
-													} ?></td>
-												<td>
-													<a href="<?= base_url('Pimpinan/cAnalisis/detail_analisis/' . $value->tgl_proses . '/' . $value->periode) ?>" class="btn btn-warning">Detail Analisis Karyawan</a>
-													<a href="<?= base_url('Pimpinan/cAnalisis/cetak/' . $value->tgl_proses . '/' . $value->periode) ?>" class="btn btn-success">Cetak Laporan</a>
-												</td>
+													} else if ($value->periode == '5') {
+														echo 'Januari, Februari, Maret';
+													} else if ($value->periode == '6') {
+														echo 'April, Mei, Juni';
+													} else if ($value->periode == '7') {
+														echo 'Juli, Agustus, September';
+													}  ?></td>
+												<td><a href="<?= base_url('Pimpinan/cAnalisis/detail_analisis/' . $value->tgl_proses . '/' . $value->periode) ?>" class="btn btn-warning">Detail Analisis Karyawan</a></td>
 											</tr>
 										<?php
 										}
